@@ -19,7 +19,7 @@ import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 @Composable
-fun MatrixRain(
+fun MatrixRainAnimation(
     modifier: Modifier = Modifier,
     config: MatrixRainConfig = MatrixRainConfig(),
     shape: MatrixRainShape = MatrixRainShape.Full,

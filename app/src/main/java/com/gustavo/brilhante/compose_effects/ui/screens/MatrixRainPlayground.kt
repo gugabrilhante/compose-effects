@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.gustavo.brilhante.compose_effects.ui.theme.MatrixDemoColors
 import com.gustavo.brilhante.compose_effects.ui.theme.MatrixDemoTheme
-import com.gustavo.brilhante.composeeffect.matrixrain.MatrixRain
+import com.gustavo.brilhante.composeeffect.matrixrain.MatrixRainAnimation
 import com.gustavo.brilhante.composeeffect.matrixrain.MatrixRainConfig
 import com.gustavo.brilhante.composeeffect.matrixrain.MatrixRainShape
 import java.util.Locale
@@ -172,7 +172,7 @@ fun MatrixPreviewContainer(
                         RoundedCornerShape(12.dp)
                     )
             ) {
-                MatrixRain(
+                MatrixRainAnimation(
                     modifier = Modifier.fillMaxSize(),
                     config = config,
                     shape = shape

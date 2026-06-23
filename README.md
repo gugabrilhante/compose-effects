@@ -9,6 +9,8 @@ A configurable Matrix-style rain animation.
 
 # Installation
 
+To use this library in your project, add the JitPack repository to your `settings.gradle` or root `build.gradle`:
+
 ```kotlin
 dependencyResolutionManagement {
     repositories {
@@ -19,11 +21,22 @@ dependencyResolutionManagement {
 }
 ```
 
+Then, add the dependency to your module's `build.gradle`:
+
 ```kotlin
 dependencies {
-    implementation("com.github.gugabrilhante:compose-matrix-rain:0.1.0")
+    // Replace 'v0.1.0' with the latest release tag
+    implementation("com.github.gugabrilhante.compose-effects:compose-matrix-rain:v0.1.0")
 }
 ```
+
+> **Note:** If you get a **401 Unauthorized** error, it means the repository is private. You need to log in to [JitPack](https://jitpack.io), get your API token, and add it to your `settings.gradle`:
+> ```kotlin
+> maven {
+>     url = uri("https://jitpack.io")
+>     credentials { username = "YOUR_JITPACK_TOKEN" }
+> }
+> ```
 
 # Usage
 
@@ -37,19 +50,26 @@ MatrixRainAnimation(
 
 # Local Testing
 
-Explain how another Android project can consume the library using:
+If you want to test changes locally before publishing to JitPack:
 
-```bash
-./gradlew :compose-matrix-rain:publishToMavenLocal
-```
+1. In this project, run:
+   ```bash
+   ./gradlew :compose-matrix-rain:publishToMavenLocal
+   ```
 
-and:
+2. In your consumer project (e.g., Espiral7), add `mavenLocal()` to your repositories:
+   ```kotlin
+   repositories {
+       mavenLocal()
+       google()
+       mavenCentral()
+   }
+   ```
 
-```kotlin
-repositories {
-    mavenLocal()
-}
-```
+3. Use the local version (make sure the version matches what is in `build.gradle.kts`):
+   ```kotlin
+   implementation("com.github.gugabrilhante.compose-effects:compose-matrix-rain:0.1.0")
+   ```
 
 ## Demo App
 The `:app` module contains a gallery to preview all available effects.

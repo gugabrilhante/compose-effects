@@ -8,10 +8,10 @@ A highly configurable Matrix-style rain animation for Jetpack Compose, supportin
 
 ## Installation
 
-Add the module to your project and include it in your `build.gradle.kts`:
+Add the dependency to your `build.gradle.kts`:
 
 ```kotlin
-implementation(project(":compose-matrix-rain"))
+implementation("com.github.gugabrilhante.compose-effects:compose-matrix-rain:v0.1.0")
 ```
 
 ## Usage
@@ -19,18 +19,18 @@ implementation(project(":compose-matrix-rain"))
 ### Basic Usage
 
 ```kotlin
-MatrixRain(modifier = Modifier.fillMaxSize())
+MatrixRainAnimation(modifier = Modifier.fillMaxSize())
 ```
 
 ### Custom Configuration
 
 ```kotlin
-MatrixRain(
+MatrixRainAnimation(
     modifier = Modifier.fillMaxSize(),
     config = MatrixRainConfig(
         color = Color.Green,
         charSize = 16.sp,
-        speedRange = 3f..7f
+        speedRange = 0.1f..0.4f
     ),
     shape = MatrixRainShape.Triangle
 )
@@ -51,8 +51,8 @@ MatrixRain(
 | `color` | `Color` | `Color(0xFF4DFFEE)` |
 | `headColor` | `Color` | `Color.White` |
 | `charSize` | `TextUnit` | `14.sp` |
-| `frameDelayMillis` | `Long` | `80L` |
-| `speedRange` | `ClosedFloatingPointRange<Float>` | `2f..5f` |
+| `frameDelayMillis` | `Long` | `16L` |
+| `speedRange` | `ClosedFloatingPointRange<Float>` | `0.1f..0.4f` |
 | `trailLengthRange` | `IntRange` | `4..14` |
 
 ### MatrixRainShape

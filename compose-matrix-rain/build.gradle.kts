@@ -39,7 +39,7 @@ android {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.gugabrilhante"
+            groupId = "com.github.gugabrilhante.compose-effects"
             artifactId = "compose-matrix-rain"
             version = "0.1.0"
 

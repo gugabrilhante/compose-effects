@@ -254,10 +254,10 @@ fun SettingsOverlay(
                 ) {
                     SettingSlider(
                         label = "SPEED",
-                        value = (80L - config.frameDelayMillis).toFloat(),
-                        range = 10f..75f,
-                        displayValue = String.format(Locale.ROOT, "%.2f", (80L - config.frameDelayMillis) / 40f),
-                        onValueChange = { onConfigChange(config.copy(frameDelayMillis = (80L - it.toLong()).coerceAtLeast(5L))) }
+                        value = (160L - config.frameDelayMillis).toFloat(),
+                        range = 10f..150f,
+                        displayValue = String.format(Locale.ROOT, "%.2f", (160L - config.frameDelayMillis) / 100f),
+                        onValueChange = { onConfigChange(config.copy(frameDelayMillis = 160L - it.toLong())) }
                     )
 
                     SettingSlider(

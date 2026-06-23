@@ -36,14 +36,13 @@ android {
     }
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = project.group.toString()
-            artifactId = "compose-matrix-rain"
-            version = project.version.toString()
-
-            afterEvaluate {
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
+                groupId = project.group.toString()
+                artifactId = "compose-matrix-rain"
+                version = project.version.toString()
                 from(components["release"])
             }
         }

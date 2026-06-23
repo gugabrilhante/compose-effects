@@ -38,9 +38,11 @@ fun MatrixRain(
         }
     }
 
-    LaunchedEffect(config.frameDelayMillis, columnStates) {
+    LaunchedEffect(config.frameDelayMillis, columnStates, size.height) {
+        if (size.height <= 0) return@LaunchedEffect
+        val maxCharOffset = size.height / charSizePx
         while (true) {
-            columnStates.forEach { it.tick() }
+            columnStates.forEach { it.tick(maxCharOffset) }
             delay(config.frameDelayMillis)
         }
     }
@@ -96,11 +98,10 @@ private class MatrixColumnState(val config: MatrixRainConfig) {
         trailLength = Random.nextInt(config.trailLengthRange.first, config.trailLengthRange.last + 1)
     }
 
-    fun tick() {
+    fun tick(maxHeight: Float) {
         yOffset += speed
-        if (yOffset > 100) { // Arbitrary limit, should ideally depend on screen height
-             // In a real implementation we'd check against height, but for now just loop
-             if (Random.nextFloat() < 0.02f) {
+        if (yOffset > maxHeight) {
+             if (Random.nextFloat() < 0.01f) {
                  reset()
              }
         }

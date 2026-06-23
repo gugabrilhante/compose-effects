@@ -254,10 +254,10 @@ fun SettingsOverlay(
                 ) {
                     SettingSlider(
                         label = "SPEED",
-                        value = (160L - config.frameDelayMillis).toFloat(),
-                        range = 10f..150f,
-                        displayValue = String.format(Locale.ROOT, "%.2f", (160L - config.frameDelayMillis) / 100f),
-                        onValueChange = { onConfigChange(config.copy(frameDelayMillis = 160L - it.toLong())) }
+                        value = (80L - config.frameDelayMillis).toFloat(),
+                        range = 10f..75f,
+                        displayValue = String.format(Locale.ROOT, "%.2f", (80L - config.frameDelayMillis) / 40f),
+                        onValueChange = { onConfigChange(config.copy(frameDelayMillis = (80L - it.toLong()).coerceAtLeast(5L))) }
                     )
 
                     SettingSlider(
@@ -291,7 +291,7 @@ fun SettingsOverlay(
                     SettingSlider(
                         label = "SHUFFLE RATE",
                         value = config.shuffleRate,
-                        range = 0f..0.5f,
+                        range = 0f..1.5f,
                         displayValue = String.format(Locale.ROOT, "%.2fs", config.shuffleRate),
                         onValueChange = { onConfigChange(config.copy(shuffleRate = it)) }
                     )

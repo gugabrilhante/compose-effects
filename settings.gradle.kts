@@ -24,4 +24,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "compose-effects"
 include(":app")
+include(":compose-matrix-rain")
  

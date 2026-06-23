@@ -4,13 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.*
+import com.gustavo.brilhante.compose_effects.ui.screens.MainScreen
+import com.gustavo.brilhante.compose_effects.ui.screens.MatrixRainPlayground
 import com.gustavo.brilhante.compose_effects.ui.theme.ComposeeffectsTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +15,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ComposeeffectsTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                var currentScreen by remember { mutableStateOf("main") }
+                
+                when (currentScreen) {
+                    "main" -> MainScreen(onNavigateToMatrixRain = { currentScreen = "matrix_rain" })
+                    "matrix_rain" -> MatrixRainPlayground()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ComposeeffectsTheme {
-        Greeting("Android")
     }
 }

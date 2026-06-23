@@ -30,10 +30,17 @@ import com.gustavo.brilhante.composeeffect.matrixrain.MatrixRainConfig
 import com.gustavo.brilhante.composeeffect.matrixrain.MatrixRainShape
 import java.util.Locale
 
+enum class MatrixPreviewRatio {
+    Square,
+    Portrait,
+    Tall
+}
+
 @Composable
 fun MatrixRainPlayground() {
     var config by remember { mutableStateOf(MatrixRainConfig()) }
     var selectedShape by remember { mutableStateOf<MatrixRainShape>(MatrixRainShape.Full) }
+    var selectedRatio by remember { mutableStateOf(MatrixPreviewRatio.Portrait) }
     var isSettingsOpen by remember { mutableStateOf(false) }
 
     MatrixDemoTheme {
@@ -42,28 +49,46 @@ fun MatrixRainPlayground() {
                 .fillMaxSize()
                 .background(MatrixDemoColors.Background)
         ) {
-            MatrixRain(
-                modifier = Modifier.fillMaxSize(),
-                config = config,
-                shape = selectedShape
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 64.dp)
+                    .navigationBarsPadding(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(16.dp))
+                
+                PreviewRatioSelector(
+                    selectedRatio = selectedRatio,
+                    onRatioSelected = { selectedRatio = it }
+                )
+
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .padding(24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    MatrixPreviewContainer(
+                        ratio = selectedRatio,
+                        config = config,
+                        shape = selectedShape
+                    )
+                }
+
+                GeometrySelector(
+                    selectedShape = selectedShape,
+                    onShapeSelected = { selectedShape = it }
+                )
+                
+                Spacer(modifier = Modifier.height(48.dp))
+            }
 
             // Top Bar
             MatrixTopBar(
                 onSettingsClick = { isSettingsOpen = true }
             )
-
-            // Bottom Selector
-            Box(
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .padding(bottom = 48.dp)
-            ) {
-                GeometrySelector(
-                    selectedShape = selectedShape,
-                    onShapeSelected = { selectedShape = it }
-                )
-            }
 
             if (isSettingsOpen) {
                 SettingsOverlay(
@@ -74,6 +99,135 @@ fun MatrixRainPlayground() {
                 )
             }
         }
+    }
+}
+
+@Composable
+fun MatrixPreviewContainer(
+    ratio: MatrixPreviewRatio,
+    config: MatrixRainConfig,
+    shape: MatrixRainShape
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        val ratioText = when (ratio) {
+            MatrixPreviewRatio.Square -> "1:1"
+            MatrixPreviewRatio.Portrait -> "3:4"
+            MatrixPreviewRatio.Tall -> "9:16"
+        }
+        
+        Text(
+            "PREVIEW AREA ($ratioText)",
+            style = MaterialTheme.typography.labelSmall,
+            color = MatrixDemoColors.Cyan.copy(alpha = 0.7f),
+            modifier = Modifier.padding(bottom = 12.dp)
+        )
+
+        BoxWithConstraints(
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.Center
+        ) {
+            val containerWidth = maxWidth
+            val containerHeight = maxHeight
+            
+            val (finalWidth, finalHeight) = when (ratio) {
+                MatrixPreviewRatio.Square -> {
+                    val size = if (containerWidth < containerHeight) containerWidth else containerHeight
+                    size to size
+                }
+                MatrixPreviewRatio.Portrait -> {
+                    val hByW = containerWidth * 4 / 3
+                    if (hByW <= containerHeight) {
+                        containerWidth to hByW
+                    } else {
+                        containerHeight * 3 / 4 to containerHeight
+                    }
+                }
+                MatrixPreviewRatio.Tall -> {
+                    val hByW = containerWidth * 16 / 9
+                    if (hByW <= containerHeight) {
+                        containerWidth to hByW
+                    } else {
+                        containerHeight * 9 / 16 to containerHeight
+                    }
+                }
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(finalWidth, finalHeight)
+                    .shadow(
+                        elevation = 12.dp,
+                        shape = RoundedCornerShape(12.dp),
+                        ambientColor = MatrixDemoColors.Cyan.copy(alpha = 0.5f),
+                        spotColor = MatrixDemoColors.Cyan.copy(alpha = 0.5f)
+                    )
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Color.Black.copy(alpha = 0.8f))
+                    .border(
+                        1.dp,
+                        MatrixDemoColors.Cyan.copy(alpha = 0.3f),
+                        RoundedCornerShape(12.dp)
+                    )
+            ) {
+                MatrixRain(
+                    modifier = Modifier.fillMaxSize(),
+                    config = config,
+                    shape = shape
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun PreviewRatioSelector(
+    selectedRatio: MatrixPreviewRatio,
+    onRatioSelected: (MatrixPreviewRatio) -> Unit
+) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            "ASPECT RATIO",
+            style = MaterialTheme.typography.labelSmall,
+            color = MatrixDemoColors.OnSurfaceVariant.copy(alpha = 0.6f),
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+        Row(
+            modifier = Modifier
+                .clip(RoundedCornerShape(8.dp))
+                .background(MatrixDemoColors.GlassBackground)
+                .border(1.dp, MatrixDemoColors.GlassBorder, RoundedCornerShape(8.dp))
+                .padding(4.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            RatioOption("1:1", MatrixPreviewRatio.Square, selectedRatio == MatrixPreviewRatio.Square) { onRatioSelected(it) }
+            RatioOption("3:4", MatrixPreviewRatio.Portrait, selectedRatio == MatrixPreviewRatio.Portrait) { onRatioSelected(it) }
+            RatioOption("9:16", MatrixPreviewRatio.Tall, selectedRatio == MatrixPreviewRatio.Tall) { onRatioSelected(it) }
+        }
+    }
+}
+
+@Composable
+fun RatioOption(
+    label: String,
+    ratio: MatrixPreviewRatio,
+    isSelected: Boolean,
+    onClick: (MatrixPreviewRatio) -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(4.dp))
+            .background(if (isSelected) MatrixDemoColors.Cyan.copy(alpha = 0.15f) else Color.Transparent)
+            .clickable { onClick(ratio) }
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+    ) {
+        Text(
+            text = label,
+            color = if (isSelected) MatrixDemoColors.Cyan else MatrixDemoColors.OnSurfaceVariant,
+            style = MaterialTheme.typography.labelSmall.copy(fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal)
+        )
     }
 }
 
@@ -254,10 +408,10 @@ fun SettingsOverlay(
                 ) {
                     SettingSlider(
                         label = "SPEED",
-                        value = (160L - config.frameDelayMillis).toFloat(),
-                        range = 10f..150f,
-                        displayValue = String.format(Locale.ROOT, "%.2f", (160L - config.frameDelayMillis) / 100f),
-                        onValueChange = { onConfigChange(config.copy(frameDelayMillis = 160L - it.toLong())) }
+                        value = (80L - config.frameDelayMillis).toFloat(),
+                        range = 10f..75f,
+                        displayValue = String.format(Locale.ROOT, "%.2f", (80L - config.frameDelayMillis) / 40f),
+                        onValueChange = { onConfigChange(config.copy(frameDelayMillis = (80L - it.toLong()).coerceAtLeast(5L))) }
                     )
 
                     SettingSlider(
@@ -291,7 +445,7 @@ fun SettingsOverlay(
                     SettingSlider(
                         label = "SHUFFLE RATE",
                         value = config.shuffleRate,
-                        range = 0f..1.5f,
+                        range = 0f..0.5f,
                         displayValue = String.format(Locale.ROOT, "%.2fs", config.shuffleRate),
                         onValueChange = { onConfigChange(config.copy(shuffleRate = it)) }
                     )

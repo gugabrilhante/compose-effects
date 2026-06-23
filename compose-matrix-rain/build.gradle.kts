@@ -39,9 +39,9 @@ android {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.gugabrilhante.compose-effects"
+            groupId = project.group.toString()
             artifactId = "compose-matrix-rain"
-            version = "0.1.0"
+            version = project.version.toString()
 
             afterEvaluate {
                 from(components["release"])

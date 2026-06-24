@@ -12,13 +12,47 @@ A highly configurable Matrix-style rain animation for Jetpack Compose, supportin
 |--------------------------------------------------------------------|
 | <img src="docs/matrix_demo_03.gif" width="100%" alt="Colors rain"> |
 
-
 ## Installation
 
-Add the dependency to your `build.gradle.kts`:
+### 1. Add JitPack to your `settings.gradle.kts`
 
 ```kotlin
-implementation("com.github.gugabrilhante.compose-effects:compose-matrix-rain:v0.1.0")
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+### 2. Add the dependency
+
+#### Using Version Catalog (`libs.versions.toml` - Recommended)
+
+```toml
+[versions]
+matrix-rain = "v0.1.6"
+
+[libraries]
+matrix-rain = { module = "com.github.gugabrilhante:compose-effects", version.ref = "matrix-rain" }
+```
+
+Then in your `build.gradle.kts`:
+
+```kotlin
+dependencies {
+    implementation(libs.matrix.rain)
+}
+```
+
+#### Direct implementation
+
+```kotlin
+dependencies {
+    implementation("com.github.gugabrilhante:compose-effects:v0.1.6")
+}
 ```
 
 ## Usage
@@ -61,6 +95,8 @@ MatrixRainAnimation(
 | `frameDelayMillis` | `Long` | `16L` |
 | `speedRange` | `ClosedFloatingPointRange<Float>` | `0.1f..0.4f` |
 | `trailLengthRange` | `IntRange` | `4..14` |
+| `densityFactor` | `Float` | `0.8f` |
+| `shuffleRate` | `Float` | `0.1f` |
 
 ### MatrixRainShape
 * `Full`: Fills the entire available space.

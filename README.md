@@ -25,8 +25,8 @@ Then, add the dependency to your module's `build.gradle`:
 
 ```kotlin
 dependencies {
-    // Replace 'v0.1.5' with the latest release tag
-    implementation("com.github.gugabrilhante:compose-effects:v0.1.5")
+    // Replace 'v0.1.6' with the latest release tag
+    implementation("com.github.gugabrilhante:compose-effects:v0.1.6")
 }
 ```
 
@@ -68,7 +68,7 @@ If you want to test changes locally before publishing to JitPack:
 
 3. Use the local version (make sure the version matches what is in `build.gradle.kts`):
    ```kotlin
-   implementation("com.github.gugabrilhante:compose-effects:0.1.5")
+   implementation("com.github.gugabrilhante:compose-effects:0.1.6")
    ```
 
 ## Demo App

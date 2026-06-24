@@ -25,8 +25,8 @@ Then, add the dependency to your module's `build.gradle`:
 
 ```kotlin
 dependencies {
-    // Replace 'v0.1.0' with the latest release tag
-    implementation("com.github.gugabrilhante.compose-effects:compose-matrix-rain:v0.1.0")
+    // Replace 'v0.1.4' with the latest release tag
+    implementation("com.github.gugabrilhante.compose-effects:compose-matrix-rain:v0.1.4")
 }
 ```
 
@@ -68,7 +68,7 @@ If you want to test changes locally before publishing to JitPack:
 
 3. Use the local version (make sure the version matches what is in `build.gradle.kts`):
    ```kotlin
-   implementation("com.github.gugabrilhante.compose-effects:compose-matrix-rain:0.1.0")
+   implementation("com.github.gugabrilhante.compose-effects:compose-matrix-rain:0.1.4")
    ```
 
 ## Demo App

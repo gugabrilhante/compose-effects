@@ -40,9 +40,9 @@ afterEvaluate {
     publishing {
         publications {
             register<MavenPublication>("release") {
-                groupId = (findProperty("group") ?: rootProject.group).toString()
+                groupId = "com.github.gugabrilhante"
                 artifactId = "compose-matrix-rain"
-                version = (findProperty("version") ?: rootProject.version).toString()
+                version = rootProject.findProperty("version")?.toString() ?: project.version.toString()
                 from(components["release"])
             }
         }

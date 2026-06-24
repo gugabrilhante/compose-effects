@@ -13,7 +13,7 @@ data class MatrixRainConfig(
     val fontFamily: FontFamily = FontFamily.Monospace,
     val frameDelayMillis: Long = 16L,
     val speedRange: ClosedFloatingPointRange<Float> = 0.1f..0.4f,
-    val trailLengthRange: IntRange = 4..14,
+    val trailLengthRange: IntRange = 14..24,
     val densityFactor: Float = 0.8f,
-    val shuffleRate: Float = 0.1f,
+    val shuffleRate: Float = 0.25f,
 )

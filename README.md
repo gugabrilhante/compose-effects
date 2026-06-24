@@ -2,6 +2,17 @@
 
 A collection of high-quality, reusable Jetpack Compose animations and effects.
 
+## Demo
+
+| Demo 01                                                          | Demo 03                                                             |
+|------------------------------------------------------------------|---------------------------------------------------------------------|
+| <img src="docs/matrix_demo_01.gif" width="100%" alt="fast rain"> | <img src="docs/matrix_demo_02.gif" width="100%" alt="Typing usage"> |
+
+| List reminders — Light Mode                                        |
+|--------------------------------------------------------------------|
+| <img src="docs/matrix_demo_03.gif" width="100%" alt="Colors rain"> |
+
+
 ## Modules
 
 ### [Matrix Rain](./compose-matrix-rain)

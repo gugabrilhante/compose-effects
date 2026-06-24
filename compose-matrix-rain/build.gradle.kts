@@ -42,9 +42,9 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 from(components["release"])
 
-                groupId = "com.github.gugabrilhante.compose-effects"
-                artifactId = "compose-matrix-rain"
-                version = "0.1.4"
+                groupId = "com.github.gugabrilhante"
+                artifactId = "compose-effects"
+                version = "0.1.5"
             }
         }
     }

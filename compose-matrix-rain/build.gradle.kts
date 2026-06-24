@@ -44,7 +44,7 @@ afterEvaluate {
 
                 groupId = "com.github.gugabrilhante"
                 artifactId = "compose-effects"
-                version = "0.1.6"
+                version = "0.1.7"
             }
         }
     }

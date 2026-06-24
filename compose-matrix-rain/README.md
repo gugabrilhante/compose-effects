@@ -33,7 +33,7 @@ dependencyResolutionManagement {
 
 ```toml
 [versions]
-matrix-rain = "v0.1.6"
+matrix-rain = "v0.1.7"
 
 [libraries]
 matrix-rain = { module = "com.github.gugabrilhante:compose-effects", version.ref = "matrix-rain" }
@@ -51,7 +51,7 @@ dependencies {
 
 ```kotlin
 dependencies {
-    implementation("com.github.gugabrilhante:compose-effects:v0.1.6")
+    implementation("com.github.gugabrilhante:compose-effects:v0.1.7")
 }
 ```
 

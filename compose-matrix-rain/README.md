@@ -4,7 +4,7 @@ A highly configurable Matrix-style rain animation for Jetpack Compose, supportin
 
 ## Demo
 
-![Matrix Rain Demo](../docs/matrix_demo_02.gif)
+![Matrix Rain Demo](../docs/matrix_demo_03.gif)
 
 ## Installation
 

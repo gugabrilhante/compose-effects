@@ -2,16 +2,6 @@
 
 A highly configurable Matrix-style rain animation for Jetpack Compose, supporting various shapes and custom configurations.
 
-## Preview
-
-| Demo 01                                                          | Demo 03                                                             |
-|------------------------------------------------------------------|---------------------------------------------------------------------|
-| <img src="docs/matrix_demo_01.gif" width="100%" alt="fast rain"> | <img src="docs/matrix_demo_02.gif" width="100%" alt="Typing usage"> |
-
-| List reminders — Light Mode                                        |
-|--------------------------------------------------------------------|
-| <img src="docs/matrix_demo_03.gif" width="100%" alt="Colors rain"> |
-
 ## Installation
 
 ### 1. Add JitPack to your `settings.gradle.kts`

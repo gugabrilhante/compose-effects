@@ -31,9 +31,11 @@ dependencyResolutionManagement {
 
 #### Using Version Catalog (`libs.versions.toml` - Recommended)
 
+Replace `vX.Y.Z` with the latest tag from [Releases](https://github.com/gugabrilhante/compose-effects/releases):
+
 ```toml
 [versions]
-matrix-rain = "v0.1.7"
+matrix-rain = "vX.Y.Z"
 
 [libraries]
 matrix-rain = { module = "com.github.gugabrilhante:compose-effects", version.ref = "matrix-rain" }
@@ -49,9 +51,11 @@ dependencies {
 
 #### Direct implementation
 
+Replace `vX.Y.Z` with the latest tag from [Releases](https://github.com/gugabrilhante/compose-effects/releases):
+
 ```kotlin
 dependencies {
-    implementation("com.github.gugabrilhante:compose-effects:v0.1.7")
+    implementation("com.github.gugabrilhante:compose-effects:vX.Y.Z")
 }
 ```
 

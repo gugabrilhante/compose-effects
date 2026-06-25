@@ -32,22 +32,13 @@ dependencyResolutionManagement {
 }
 ```
 
-Then, add the dependency to your module's `build.gradle`:
+Then, add the dependency to your module's `build.gradle` (Replace `vX.Y.Z` with the latest tag from [Releases](https://github.com/gugabrilhante/compose-effects/releases)):
 
 ```kotlin
 dependencies {
-    // Replace 'v0.1.6' with the latest release tag
-    implementation("com.github.gugabrilhante:compose-effects:v0.1.6")
+    implementation("com.github.gugabrilhante:compose-effects:vX.Y.Z")
 }
 ```
-
-> **Note:** If you get a **401 Unauthorized** error, it means the repository is private. You need to log in to [JitPack](https://jitpack.io), get your API token, and add it to your `settings.gradle`:
-> ```kotlin
-> maven {
->     url = uri("https://jitpack.io")
->     credentials { username = "YOUR_JITPACK_TOKEN" }
-> }
-> ```
 
 # Usage
 
@@ -58,29 +49,6 @@ MatrixRainAnimation(
     shape = MatrixRainShape.Full
 )
 ```
-
-# Local Testing
-
-If you want to test changes locally before publishing to JitPack:
-
-1. In this project, run:
-   ```bash
-   ./gradlew :compose-matrix-rain:publishToMavenLocal
-   ```
-
-2. In your consumer project (e.g., Espiral7), add `mavenLocal()` to your repositories:
-   ```kotlin
-   repositories {
-       mavenLocal()
-       google()
-       mavenCentral()
-   }
-   ```
-
-3. Use the local version (make sure the version matches what is in `build.gradle.kts`):
-   ```kotlin
-   implementation("com.github.gugabrilhante:compose-effects:0.1.6")
-   ```
 
 ## Demo App
 The `:app` module contains a gallery to preview all available effects.
